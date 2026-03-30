@@ -12,18 +12,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class MatriculaServiceTest {
 
     @Test
-    @DisplayName("validation of codigo")
-    void matriculaServiceTest() {
+    @DisplayName("Nombre inválido")
+    void nombreInvalidoTest() {
         MatriculaService service = new MatriculaService();
 
         Matricula m = new Matricula();
-        m.setCodigoMatricula("2344565615");
+        m.setCodigoMatricula("IN1234");
+        m.setNombreEstudiante("");
+        m.setCodigoCurso("");
+        m.setCreditos(0);
+        m.setFecha(LocalDate.now());
 
         String resultado = service.registrar(m);
 
         assertEquals("El nombre del estudiante debe tener al menos cuatro caracteres alfabéticos", resultado);
     }
-
 
 
 
