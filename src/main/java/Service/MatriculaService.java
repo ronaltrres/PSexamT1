@@ -13,7 +13,7 @@ class MatriculaService {
             return "Debe ingresar todos los datos requeridos";
         }
 
-        if (!m.getCodigoMatricula().matches("[A-Z]{2}\\d{4}")) {
+        if (!esCodigoValido(m.getCodigoMatricula())) {
             return "Ingrese un código de matrícula válido";
         }
 
@@ -35,4 +35,9 @@ class MatriculaService {
 
         return "La matrícula ha sido registrada correctamente";
     }
+
+    private boolean esCodigoValido(String codigo) {
+        return codigo.matches("[A-Z]{2}\\d{4}");
+    }
+
 }
