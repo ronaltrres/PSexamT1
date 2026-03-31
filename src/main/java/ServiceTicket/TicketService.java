@@ -3,12 +3,19 @@ package ServiceTicket;
 import EntityTicket.Ticket;
 import EntityTicket.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicketService {
 
     public String crearTicket(Ticket t, Usuario u) {
 
-        if (t.getCodigo() == null) {
-            return "Código inválido";
+        List<Ticket> listaTickets = new ArrayList<>();
+
+        for (Ticket ticket : listaTickets) {
+            if (ticket.getCodigo().equals(t.getCodigo())) {
+                return "El código ya existe";
+            }
         }
 
         if (!esPrioridadValida(t.getPrioridad())) {
