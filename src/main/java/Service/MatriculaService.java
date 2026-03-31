@@ -1,10 +1,13 @@
 package Service;
 
 import Entity.Matricula;
-
 import java.time.LocalDate;
 
-class MatriculaService {
+public class MatriculaService {
+
+    private static final String PATRON_CODIGO = "[A-Z]{2}\\d{4}";
+    private static final String PATRON_NOMBRE = "[A-Za-z]{4,}";
+    private static final String PATRON_CURSO = "[A-Za-z0-9]{5}";
 
     public String registrar(Matricula m) {
 
@@ -13,15 +16,15 @@ class MatriculaService {
             return "Debe ingresar todos los datos requeridos";
         }
 
-        if (!esCodigoValido(m.getCodigoMatricula())) {
+        if (!cumplePatron(m.getCodigoMatricula(), PATRON_CODIGO)) {
             return "Ingrese un código de matrícula válido";
         }
 
-        if (!m.getNombreEstudiante().matches("[A-Za-z]{4,}")) {
+        if (!cumplePatron(m.getNombreEstudiante(), PATRON_NOMBRE)) {
             return "El nombre del estudiante debe tener al menos cuatro caracteres alfabéticos";
         }
 
-        if (!m.getCodigoCurso().matches("[A-Za-z0-9]{5}")) {
+        if (!cumplePatron(m.getCodigoCurso(), PATRON_CURSO)) {
             return "Ingrese un código de curso válido";
         }
 
@@ -36,8 +39,7 @@ class MatriculaService {
         return "La matrícula ha sido registrada correctamente";
     }
 
-    private boolean esCodigoValido(String codigo) {
-        return codigo.matches("[A-Z]{2}\\d{4}");
+    private boolean cumplePatron(String valor, String patron) {
+        return valor != null && valor.matches(patron);
     }
-
 }
