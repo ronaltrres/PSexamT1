@@ -16,12 +16,12 @@ class TicketServiceTest {
 
 
         Usuario usuarioMock = Mockito.mock(Usuario.class) ;
-        Mockito.when(usuarioMock.getTicketsAbiertos()).thenReturn(10);
+        Mockito.when(usuarioMock.getTicketsAbiertos()).thenReturn(5);
 
 
         Ticket t = new Ticket();
         t.setCodigo("t001");
-        t.setPrioridad("alta");
+        t.setPrioridad("media");
 
         TicketService service = new TicketService();
 
